@@ -1,12 +1,32 @@
-# Simple NGINX Plus API Gateway
+# A Simple NGINX Plus API Gateway
 
-Please refer to the techical blog post **Deploying NGINX Plus as an API Gateway** for detailed examples on implementing a complete API Gateway:
-*  ([Part 1](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/)
-*  [Part 2](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-2-protecting-backend-services/))
+A example base Configuration for an egress NGINX Plus API Gateway
+
+Please refer to the techical blog post **Deploying NGINX Plus as an API Gateway** for detailed examples on implementing 
+a complete API Gateway:
+*  [Part 1](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/)
+*  [Part 2](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-2-protecting-backend-services/)
+*  [Part 3](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-3-publishing-grpc-services/)
+
+## Example Topology
+
+```
+    +----------------+                   +--------------------------+
+    |                |                   |                          |
+    |  API CLIENT    |    TLS            |        NGINX PLUS        |
+    |  APPLICATIONS  | Internal FQDN     |       API Gateway        |
+    |                +------------------->                          +--------> api.mastercard.com/openbanking/sandbox...
+    |                |     e.g.          | Domain translation,      |          api.mastercard.com/openbanking/...
+    |                | api.example.com   | Routing, and more        |          etc...
+    |                |                   |                          |
+    +----------------+                   +--------------------------+
+```
 
 ## File Structure
 
-To achieve this separation, we create a configuration layout that supports a multi‑purpose NGINX Plus instance and provides a convenient structure for automating configuration deployment through CI/CD pipelines. The resulting directory structure under `/etc/nginx` looks like this:
+To achieve this separation, we create a configuration layout that supports a multi‑purpose NGINX Plus instance and 
+provides a convenient structure for automating configuration deployment through CI/CD pipelines. The resulting directory 
+structure under `/etc/nginx` looks like this:
 
 ```
 etc/
