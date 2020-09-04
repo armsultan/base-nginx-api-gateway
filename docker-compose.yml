@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  # NGINX Plus Egress Gateway
+  nginx-plus:
+    build: nginx-plus
+    volumes:
+      - ./nginx-plus/etc/nginx:/etc/nginx
+    ports:
+      - 8080:8080
+      - 80:80
+      - 443:443
+    restart: always
