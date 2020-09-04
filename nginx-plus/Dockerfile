@@ -88,4 +88,4 @@ RUN chown -R nginx:nginx /etc/nginx \
 # EXPOSE ports, HTTP 80, HTTPS 443 and, Nginx status page 8080
 EXPOSE 80 443 8080
 STOPSIGNAL SIGTERM
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx-debug", "-g", "daemon off;"]
